@@ -8,7 +8,7 @@ import (
 	"runtime"
 	"strings"
 
-	// "minerpg/internal/game"
+	"minerpg/internal/game"
 	"minerpg/internal/util"
 )
 
@@ -31,7 +31,8 @@ func run() error {
   fmt.Println("\tMineRPG!")
   reader := bufio.NewReader(os.Stdin)
 
-	if g, err := game.NewGame(); err != nil {
+  g, err := game.NewGame()
+  if err != nil {
 	  return err
   }
   

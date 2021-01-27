@@ -6,15 +6,15 @@ import "fmt"
 type Game struct{}
 
 // NewGame will construct a game
-func NewGame() *Game {
+func NewGame() (*Game, error) {
 	g := Game{}
 
 	fmt.Println("You are in a glistening mine.  There is an exit to the North.")
 
-	return &g
+	return &g, nil
 }
 
 // Execute takes in a command, passes it to internal logic, and returns whatever the response is.
 func (g *Game) Execute(command string) (string, error) {
-  return fmt.Sprintf("You just input: '%s'", command), nil
+  return fmt.Sprintf("You just input '%s'", command), nil
 }
