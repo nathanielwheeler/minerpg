@@ -12,8 +12,7 @@ func main() {
 	}
 }
 
-// glistening-mine : 
 func run() error {
-	fmt.Println("glistening-mine!")
+  
 	return nil
 }
