@@ -1,12 +1,15 @@
 package main
 
 import (
+	"bufio"
 	"errors"
 	"fmt"
 	"os"
-  "runtime"
-  
-  "minerpg/internal/util"
+	"runtime"
+	"strings"
+
+	// "minerpg/internal/game"
+	"minerpg/internal/util"
 )
 
 // minerpg will run a cui that will start the game loop.  Only supports linux and darwin.
@@ -22,5 +25,27 @@ func run() error {
 		return errors.New("operating system not supported")
 	}
 
-	return nil
+	// Start game loop
+	util.ClearConsole()
+  fmt.Println("\tMineRPG!")
+  reader := bufio.NewReader(os.Stdin)
+	// if err := game.Run(); err != nil {
+	//   return err
+  // }
+  
+	// Take input and await response
+	for {
+		fmt.Print("==> ")
+		req, _ := reader.ReadString('\n')
+    req = strings.Replace(req, "\n", "", -1) // Convert CRLF to LF
+    
+		// res, err := game.ExecuteRequest()
+		// if err != nil {
+		// 	return err
+    // }
+    res := req
+
+		util.ClearConsole()
+		fmt.Printf("%s\n", res)
+	}
 }

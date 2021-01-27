@@ -1,5 +1,7 @@
 package util
 
+import "os/exec"
+
 // IsOSSupported will return false if the OS is not on the supported list.
 func IsOSSupported(goos string) bool {
 	supported := []string{
@@ -13,6 +15,11 @@ func IsOSSupported(goos string) bool {
 		return false
 	}
 	return true
+}
+
+// ClearConsole will clear the terminal
+func ClearConsole() {
+	exec.Command("clear").Run()
 }
 
 // StringExistsInSlice will take a string slice and search it for the input string, returning true if it succeeds.
