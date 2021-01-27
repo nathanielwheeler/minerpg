@@ -1,3 +1,6 @@
+// +build ignore
+// I don't want to build this yet.
+
 package main
 
 import (
