@@ -18,15 +18,8 @@ func main() {
 }
 
 func run() error {
-	supported := []string{
-		"darwin",
-		"freebsd",
-		"linux",
-		"netbsd",
-		"openbsd",
-	}
-	if !util.StringExistsInSlice(supported, runtime.GOOS) {
-		return errors.New("operating System not supported")
+	if !util.IsOSSupported(runtime.GOOS) {
+		return errors.New("operating system not supported")
 	}
 
 	return nil
