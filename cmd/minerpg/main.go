@@ -25,13 +25,15 @@ func run() error {
 		return errors.New("operating system not supported")
 	}
 
-	// Start game loop
+  // Start game loop
+  
 	util.ClearConsole()
   fmt.Println("\tMineRPG!")
   reader := bufio.NewReader(os.Stdin)
-	// if err := game.Run(); err != nil {
-	//   return err
-  // }
+
+	if g, err := game.NewGame(); err != nil {
+	  return err
+  }
   
 	// Take input and await response
 	for {
@@ -39,11 +41,10 @@ func run() error {
 		req, _ := reader.ReadString('\n')
     req = strings.Replace(req, "\n", "", -1) // Convert CRLF to LF
     
-		// res, err := game.ExecuteRequest()
-		// if err != nil {
-		// 	return err
-    // }
-    res := req
+		res, err := g.Execute(req)
+		if err != nil {
+			return err
+    }
 
 		util.ClearConsole()
 		fmt.Printf("%s\n", res)
