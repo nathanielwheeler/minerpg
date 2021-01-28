@@ -42,8 +42,6 @@ func (g *Game) Execute(command string) (string, error) {
     }
     return g.GoDirection(fields[1]), nil
   case "look":
-    fmt.Println("Got here")
-
     desc := g.GetRoomDescription(g.CurrentRoomID)
 		return desc, nil
 	case "something":
