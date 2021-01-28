@@ -21,6 +21,11 @@ type Door struct {
 // GenerateRooms will add a list of rooms to the game
 func (g *Game) GenerateRooms() {
 	g.Rooms = map[uint]Room{
+    0: {
+      Name: "test room",
+      Description: "A bland, featureless room.  There is a DOOR labelled 'door that connects to this very room.'",
+      Doors: []Door{Door{RoomID:0,Direction:"door"}},
+    },
 		1: {
 			Name:        "Glistening Mine",
 			Description: "You are in a glistening mine.  There is an exit to the NORTH.",
