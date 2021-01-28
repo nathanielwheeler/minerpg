@@ -12,41 +12,36 @@ type Game struct {
 }
 
 // NewGame will construct a game
-func NewGame() (*Game, error) {
+func NewGame() *Game {
 	g := Game{CurrentRoomID: uint(1)}
 	g.GenerateRooms()
 
   fmt.Println(g.GetRoomDescription(g.CurrentRoomID))
 
-	return &g, nil
+	return &g
 }
 
 // Execute takes in a command, passes it to internal logic, and returns whatever the response is.
-func (g *Game) Execute(command string) (string, error) {
+func (g *Game) Execute(command string) string {
 	// TODO Put a proper validation layer in?
 	if command == "" {
-		return "Type something in, yo.", nil
+		return "Type something in, yo."
 	}
 	command = strings.ToLower(command) // normalize to lowercase
 
-	// Turn command into fields
 	fields := strings.Fields(command)
-	// args := fields[:2]
-
 	switch fields[0] {
 	case "go":
-		// TODO refactor for simplicity, this is unwieldy in the long run
-    // I could use util.StringExistsInSlice on the location directions, keeping my switch statements a bit more maintainable
     if len(fields) < 2 {
-      return "Go where?", nil
+      return "Go where?"
     }
-    return g.GoDirection(fields[1]), nil
+    return g.GoDirection(fields[1])
   case "look":
     desc := g.GetRoomDescription(g.CurrentRoomID)
-		return desc, nil
+		return desc
 	case "something":
-		return "Don't you sass me.", nil
+		return "Don't you sass me."
 	default:
-		return fmt.Sprintf("'%s' does not compute.", command), nil
+		return fmt.Sprintf("'%s' does not compute.", command)
 	}
 }

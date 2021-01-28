@@ -20,7 +20,7 @@ func TestGenerateRooms(t *testing.T) {
 func TestGetRoomDescription(t *testing.T) {
   is := is.New(t)
 
-  g, _ := NewGame()
+  g := NewGame()
   desc := g.GetRoomDescription(0)
   is.Equal(desc, "A bland, featureless room.  There is a DOOR labelled 'door that connects to this very room.'")
 }
@@ -28,7 +28,7 @@ func TestGetRoomDescription(t *testing.T) {
 func TestGoDirection(t *testing.T) {
   is := is.New(t)
 
-  g, _ := NewGame()
+  g := NewGame()
   res := g.GoDirection("south")
   is.Equal(res, "You can't go that way.")
   res = g.GoDirection("north")

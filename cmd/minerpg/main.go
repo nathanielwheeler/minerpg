@@ -31,10 +31,7 @@ func run() error {
   fmt.Println("\tMineRPG!")
   reader := bufio.NewReader(os.Stdin)
 
-  g, err := game.NewGame()
-  if err != nil {
-	  return err
-  }
+  g := game.NewGame()
   
 	// Take input and await response
 	for {
@@ -42,10 +39,7 @@ func run() error {
 		req, _ := reader.ReadString('\n')
     req = strings.Replace(req, "\n", "", -1) // Convert CRLF to LF
     
-		res, err := g.Execute(req)
-		if err != nil {
-			return err
-    }
+		res := g.Execute(req)
 
 		util.ClearConsole()
 		fmt.Printf("%s\n", res)
