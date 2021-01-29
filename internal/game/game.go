@@ -35,13 +35,23 @@ func (g *Game) Execute(command string) string {
     if len(fields) < 2 {
       return "Go where?"
     }
-    return g.GoDirection(fields[1])
+    // Check if direction is applicable.
+    res := g.GoDirection(fields[1])
+    if res != "" {
+      return res
+    }
+    return "You can't go that way."
   case "look":
     desc := g.GetRoomDescription(g.CurrentRoomID)
 		return desc
 	case "something":
 		return "Don't you sass me."
-	default:
-		return fmt.Sprintf("'%s' does not compute.", command)
+  default:
+    // Check if input is a direction
+    res := g.GoDirection(fields[0])
+    if res != "" {
+      return res
+    }
+    return fmt.Sprintf("'%s' does not compute.", command)
 	}
 }

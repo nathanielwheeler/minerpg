@@ -65,5 +65,5 @@ func (g *Game) GoDirection(dir string) string {
 		}
 	}
 
-	return "You can't go that way."
+	return ""
 }

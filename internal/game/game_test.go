@@ -28,11 +28,15 @@ func TestExecute(t *testing.T) {
 
 	res := g.Execute("look")
 	is.Equal(res, "You are in a glistening mine.  There is an exit to the NORTH.")
-
+  
 	res = g.Execute("go")
 	is.Equal(res, "Go where?")
 	res = g.Execute("go south")
 	is.Equal(res, "You can't go that way.")
+	res = g.Execute("south")
+	is.Equal(res, "'south' does not compute.")
 	res = g.Execute("go north")
-	is.Equal(res, "The tunnel ends in a mineshaft.  You can go SOUTH or DOWN.")
+  is.Equal(res, "The tunnel ends in a mineshaft.  You can go SOUTH or DOWN.")
+  res = g.Execute("south")
+	is.Equal(res, "You are in a glistening mine.  There is an exit to the NORTH.")
 }
