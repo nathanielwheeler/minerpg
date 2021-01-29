@@ -27,16 +27,25 @@ func TestExecute(t *testing.T) {
 	g := NewGame()
 
 	res := g.Execute("look")
-	is.Equal(res, "You are in a glistening mine.  There is an exit to the NORTH.")
+	is.Equal(res, "You are in a glistening mine.  There is a passage to the NORTH and door to the EAST.")
   
+  // test invalid directions
 	res = g.Execute("go")
 	is.Equal(res, "Go where?")
 	res = g.Execute("go south")
 	is.Equal(res, "You can't go that way.")
 	res = g.Execute("south")
 	is.Equal(res, "'south' does not compute.")
-	res = g.Execute("go north")
-  is.Equal(res, "The tunnel ends in a mineshaft.  You can go SOUTH or DOWN.")
+  res = g.Execute("east")
+  is.Equal(res, "The way EAST is locked.")
+
+  // test going north, getting key, unlocking door, and going east.
+  res = g.Execute("go north")
+  is.Equal(res, "You are in a dusty break room containing an ancient card TABLE.  There is an exit to the SOUTH.")
+  // get key
   res = g.Execute("south")
-	is.Equal(res, "You are in a glistening mine.  There is an exit to the NORTH.")
+  is.Equal(res, "You are in a glistening mine.  There is a passage to the NORTH and door to the EAST.")
+  // unlock door
+  res = g.Execute("east")
+  is.Equal(res, "You come to a deep mineshaft.  You can go back WEST or go DOWN.")
 }

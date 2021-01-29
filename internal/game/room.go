@@ -12,7 +12,7 @@ type Room struct {
 type Door struct {
 	RoomID    uint
 	Direction string
-	// IsLocked bool
+	IsLocked bool 
 	// IsVisible bool
 	// GoDesc string
 	// LookDesc string
@@ -28,20 +28,25 @@ func (g *Game) GenerateRooms() {
     },
 		1: {
 			Name:        "Glistening Mine",
-			Description: "You are in a glistening mine.  There is an exit to the NORTH.",
+			Description: "You are in a glistening mine.  There is a passage to the NORTH and door to the EAST.",
 			Doors: []Door{
 				Door{RoomID: 2, Direction: "north"},
+				Door{RoomID: 3, Direction: "east", IsLocked: true},
 			},
 		},
 		2: {
-			Name:        "Mineshaft",
-			Description: "The tunnel ends in a mineshaft.  You can go SOUTH or DOWN.",
-			Doors: []Door{
-				Door{RoomID: 1, Direction: "south"},
-				Door{RoomID: 3, Direction: "down"},
-			},
+      Name:        "Dusty Break Room",
+			Description: "You are in a dusty break room containing an ancient card TABLE.  There is an exit to the SOUTH.",
 		},
-		3: {
+    3: {
+      Name:        "Mineshaft",
+      Description: "You come to a deep mineshaft.  You can go back WEST or go DOWN.",
+      Doors: []Door{
+        Door{RoomID: 1, Direction: "south"},
+        Door{RoomID: 3, Direction: "down"},
+      },
+    },
+		4: {
 			Name:        "Underground Lake",
 			Description: "You are next to an underground lake.  Looks like you're stuck here!",
 		},

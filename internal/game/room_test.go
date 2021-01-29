@@ -32,5 +32,5 @@ func TestGoDirection(t *testing.T) {
   res := g.GoDirection("south")
   is.Equal(res, "")
   res = g.GoDirection("north")
-  is.Equal(res, "The tunnel ends in a mineshaft.  You can go SOUTH or DOWN.")
+  is.Equal(res, "You are in a dusty break room containing an ancient card TABLE.  There is an exit to the SOUTH.")
 }
