@@ -5,7 +5,7 @@ type Room struct {
 	Name        string
 	Description string
 	Doors       []Door
-	// Items []Item
+	Items []Item
 }
 
 // Door holds the metadata required to journey to a different room.
@@ -36,7 +36,23 @@ func (g *Game) GenerateRooms() {
 		},
 		2: {
       Name:        "Dusty Break Room",
-			Description: "You are in a dusty break room containing an ancient card TABLE.  There is an exit to the SOUTH.",
+      Description: "You are in a dusty break room containing an ancient card TABLE.  There is an exit to the SOUTH.",
+      Items: []Item{
+        Item{
+          Name: "TABLE",
+          Description: "The TABLE looks old and dusty.  There is a KEY resting on the surface.",
+          CanGet: false,
+        },
+        Item{
+          Name: "KEY",
+          Description: "The KEY has a faint layer of rust on it.",
+          CanGet: true,
+          UnlocksDoor: struct{RoomID uint; Direction string}{
+            RoomID: uint(1),
+            Direction: "east",
+          },
+        },
+      },
 		},
     3: {
       Name:        "Mineshaft",
